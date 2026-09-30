@@ -1,0 +1,13 @@
+# Compilados Java — gerados por javac, nunca versionados
+*.class
+bin/
+out/
+target/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Sistema
+.DS_Store
