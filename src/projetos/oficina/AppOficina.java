@@ -9,19 +9,22 @@ public class AppOficina {
         Pintura civicSedan = new Pintura(8, 500, true, "Sebastiao", "ko98GH", 400);
         Revisao ninjaKawasaki = new Revisao(1, 45, "Flavio", "ass567h", 70);
         TrocaDeOleo hb20 = new TrocaDeOleo("castrol", 52, "Cristina", "rtk345", 89);
+        Funilaria corolla = new Funilaria("Kaio", "qgu4537", 250, 2, 80);
 
         ordensDeServico.put("OS-001", unoMille);
         ordensDeServico.put("OS-002", civicSedan);
         ordensDeServico.put("OS-003", ninjaKawasaki);
         ordensDeServico.put("OS-004", hb20);
+        ordensDeServico.put("OS-005", corolla);
 
         listarTodos(ordensDeServico);
+        // esperado: OS-005 → Servico realizado para o cliente Kaio do veiculo com placa qgu4537, status do servico: não finalizado, no valor total de 410.0, servico de funilaria.
         // esperado: OS-002 → Servico realizado para o cliente Sebastiao do veiculo com placa ko98GH, status do servico: não finalizado, no valor total de 7040.0, pintura personalizada.
         // esperado: OS-001 → Servico realizado para o cliente Silvia do veiculo com placa fg56j7k, status do servico: não finalizado, no valor total de 100.0, lavagem premium.
         // esperado: OS-004 → Servico realizado para o cliente Cristina do veiculo com placa rtk345, status do servico: não finalizado, no valor total de 141.0, troca do(s) item(s): castrol.
         // esperado: OS-003 → Servico realizado para o cliente Flavio do veiculo com placa ass567h, status do servico: não finalizado, no valor total de 115.0, revisao com total de itens revisados de 1.
         System.out.println("O total somado do servicos é: R$ " + cobrancasTotais(ordensDeServico));
-        // esperado: O total somado do servicos é: R$ 7396.0
+        // esperado: O total somado do servicos é: R$ 7806.0
         mostrarServico(ordensDeServico, "OS-003");
         // esperado: OS-003 → Servico realizado para o cliente Flavio do veiculo com placa ass567h, status do servico: não finalizado, no valor total de 115.0, revisao com total de itens revisados de 1.
         mostrarServico(ordensDeServico, "OS-007");
@@ -33,7 +36,7 @@ public class AppOficina {
         buscaPorServico(ordensDeServico, "OS-003").concluir();
         // esperado: Serviço já foi concluído.
         System.out.println("O total de ordens em aberto é: " + ordensEmAberto(ordensDeServico));
-        // esperado: O total de ordens em aberto é: 2 
+        // esperado: O total de ordens em aberto é: 3 
     }
 
     public static void listarTodos(HashMap<String, Servico> ordensDeServico) {
@@ -81,5 +84,3 @@ public class AppOficina {
         return total;
     }
 }
-
-// Acho que vai da 4 erros, pontuei acima os lugares
