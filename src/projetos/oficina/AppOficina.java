@@ -1,3 +1,4 @@
+import java.io.Serial;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +38,9 @@ public class AppOficina {
         // esperado: Serviço já foi concluído.
         System.out.println("O total de ordens em aberto é: " + ordensEmAberto(ordensDeServico));
         // esperado: O total de ordens em aberto é: 3 
+        servicosComGarantia(ordensDeServico);
+        // esperado: Ordem de servico: OS-005, com prazo de 180 dias de garantia, Cobertura: Erros de colorimetria, Corrosão precoce, Defeitos estruturais e alinhamento
+        // esperado: Ordem de servico: OS-002, com prazo de 120 dias de garantia, Cobertura: Defeitos de aplicação, bolhas, descascamento precoce ou corrosão.
     }
 
     public static void listarTodos(HashMap<String, Servico> ordensDeServico) {
@@ -82,5 +86,14 @@ public class AppOficina {
             }
         }
         return total;
+    }
+    public static void servicosComGarantia(HashMap<String, Servico> ordensDeServico) {
+        for (Map.Entry<String, Servico> entry : ordensDeServico.entrySet()) {
+            if (entry.getValue() instanceof Garantia g) {
+
+                System.out.println("Ordem de servico: " + entry.getKey() + ", com prazo de " + g.prazo() + " dias de garantia, Cobertura: " + g.garantia());
+            }
+        }
+
     }
 }

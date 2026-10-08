@@ -1,4 +1,4 @@
-public class Pintura extends Servico {
+public class Pintura extends Servico implements Garantia {
     private double dimensao;
     private double preco;
     private boolean personalizada;
@@ -9,9 +9,11 @@ public class Pintura extends Servico {
         this.preco = preco;
         this.personalizada = personalizada;
     }
+
     public double getDimensao() {
         return dimensao;
     }
+
     public double getPreco() {
         return preco;
     }
@@ -19,15 +21,17 @@ public class Pintura extends Servico {
     public boolean isPersonalizada() {
         return personalizada;
     }
+
     public void personalizar() {
         if (personalizada) {
             System.out.println("Personalização já concluida.");
         } else {
             personalizada = true;
-        System.out.println("Personalização realizada");
+            System.out.println("Personalização realizada");
         }
     }
-    @Override 
+
+    @Override
     public double getCobranca() {
         double percentualPersonalizacao = 0.6;
         double precoFinal = getValor() + (getDimensao() * getPreco());
@@ -36,9 +40,20 @@ public class Pintura extends Servico {
         }
         return precoFinal;
     }
-    @Override 
+
+    @Override
     public String toString() {
         String tipoPintura = isPersonalizada() ? "personalizada" : "";
         return super.toString() + ", pintura " + tipoPintura;
+    }
+
+    @Override
+    public String garantia() {
+        return "Defeitos de aplicação, bolhas, descascamento precoce ou corrosão.";
+    }
+
+    @Override
+    public int prazo() {
+        return 120;
     }
 }

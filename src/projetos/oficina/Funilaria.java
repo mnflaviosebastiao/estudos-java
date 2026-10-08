@@ -1,4 +1,4 @@
-public class Funilaria extends Servico {
+public class Funilaria extends Servico implements Garantia {
     private int quantidade;
     private double preco;
 
@@ -20,5 +20,14 @@ public class Funilaria extends Servico {
     @Override 
     public double getCobranca() {
         return getValor() + (getQuantidade() * getPreco());
+    }
+    @Override 
+    public String garantia() {
+      return "Erros de colorimetria, Corrosão precoce, Defeitos estruturais e alinhamento";
+    }
+
+    @Override 
+    public int prazo() {
+        return 180;
     }
 }
