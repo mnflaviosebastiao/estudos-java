@@ -43,7 +43,7 @@ public abstract class Servico {
 
     // consulta, apesar de depois a gente manipular como falou, mas aqui ele
     // continua sendo consulta, porem Uma consulta que calcula o valor total a cobrar
-    abstract double getCobranca();
+    public abstract double getCobranca();
 
     // consulta
     @Override
