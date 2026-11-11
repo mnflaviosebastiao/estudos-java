@@ -2,13 +2,13 @@ public abstract class Servico {
     private String cliente;
     private String placa;
     private double valor;
-    private boolean concluido;
+    private Status status;
 
     public Servico(String cliente, String placa, double valor) {
         this.cliente = cliente;
         this.placa = placa;
         this.valor = valor;
-        this.concluido = false;
+        this.status = Status.CHECK_IN;
     }
 
     // consulta
@@ -27,28 +27,41 @@ public abstract class Servico {
     }
 
     // consulta
-    public boolean isConcluido() {
-        return concluido;
+    public Status getStatus() {
+        return status;
     }
 
     // comando
-    public void concluir() {
-        if (concluido) {
-            System.out.println("Serviço já foi concluído.");
+    public void avancar() {
+        Status atual = getStatus();
+        if (!atual.isEncerrado()) {
+            Status proximo = atual.proximoPasso();
+            status = proximo;
+            System.out.println("Serviço movido para " + getStatus() + ".");
         } else {
-            concluido = true;
-            System.out.println("Serviço atualizado para concluído.");
+            System.out.println("Serviço concluído.");
         }
     }
 
     // consulta, apesar de depois a gente manipular como falou, mas aqui ele
-    // continua sendo consulta, porem Uma consulta que calcula o valor total a cobrar
+    // continua sendo consulta, porem Uma consulta que calcula o valor total a
+    // cobrar
     public abstract double getCobranca();
 
     // consulta
     @Override
     public String toString() {
-        String finalizado = isConcluido() ? "finalizado" : "não finalizado";
-        return "Servico realizado para o cliente " + getCliente() + " do veiculo com placa " + getPlaca() +  ", status do servico: " + finalizado + ", no valor total de " + getCobranca();
+        return "Servico realizado para o cliente " + getCliente() + " do veiculo com placa " + getPlaca()
+                + ", status do servico: " + getStatus() + ", no valor total de " + getCobranca();
+    }
+
+    public void recusar() {
+        Status atual = getStatus();
+        if (atual != Status.AGUARDANDO_APROVACAO) {
+            System.out.println("Nessa fase atual não é permitido recusar");
+            return;
+        }
+        status = Status.ORCAMENTO_RECUSADO;
+        System.out.println("Status atualizado para " + getStatus());
     }
 }
