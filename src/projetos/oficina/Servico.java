@@ -55,6 +55,14 @@ public abstract class Servico {
                 + ", status do servico: " + getStatus() + ", no valor total de " + getCobranca();
     }
 
+    @Override 
+    public boolean equals(Object a) {
+        if (a instanceof Servico bServico) {
+            return this.placa.equals(bServico.placa);
+        }
+        return false;
+    }
+
     public void recusar() {
         Status atual = getStatus();
         if (atual != Status.AGUARDANDO_APROVACAO) {
