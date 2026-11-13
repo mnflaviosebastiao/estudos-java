@@ -5,6 +5,8 @@ public class AppOficina {
     public static void main(String[] args) {
         HashMap<String, Servico> ordensDeServico = new HashMap<>();
 
+        HashMap<Servico, String> novoTest = new HashMap<>();
+
         Lavagem unoMille = new Lavagem("Silvia", "fg56j7k", 350, 1, 100);
         Pintura civicSedan = new Pintura(8, 500, true, "Sebastiao", "ko98GH", 400);
         Revisao ninjaKawasaki = new Revisao(1, 45, "Flavio", "ass567h", 70);
@@ -15,6 +17,7 @@ public class AppOficina {
         Lavagem palio = new Lavagem("Cristina", new String("kgb45c9"), 700, 2, 190);
 
         boolean igual = camaro.equals(corsa);
+
         if (igual == true) {
             System.out.println("é igual");
         } else {
@@ -28,12 +31,20 @@ public class AppOficina {
             System.out.println("placa diverge");
         }
         // esperado: mesma placa
+        
+        System.out.println(palio.getPlaca().hashCode());
+        // esperado: -780443139
 
         ordensDeServico.put("OS-001", unoMille);
         ordensDeServico.put("OS-002", civicSedan);
         ordensDeServico.put("OS-003", ninjaKawasaki);
         ordensDeServico.put("OS-004", hb20);
         ordensDeServico.put("OS-005", corolla);
+
+        novoTest.put(corsa, "0S-006");
+
+        System.out.println(novoTest.get(palio));
+        // esperado: 0S-006
 
         listarTodos(ordensDeServico);
         // esperado: OS-005 → Servico realizado para o cliente Kaio do veiculo com placa

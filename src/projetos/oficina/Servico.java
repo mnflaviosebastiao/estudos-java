@@ -63,6 +63,11 @@ public abstract class Servico {
         return false;
     }
 
+    @Override
+    public int hashCode() {
+        return this.placa.hashCode();
+    }
+
     public void recusar() {
         Status atual = getStatus();
         if (atual != Status.AGUARDANDO_APROVACAO) {
