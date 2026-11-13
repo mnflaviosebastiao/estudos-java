@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Pedido {
     private String cliente;
     private double valor;
@@ -25,6 +27,19 @@ public class Pedido {
     public String toString() {
         String entrega = entregue ? "entregue" : "não entregue";
         return "Cliente " + getCliente() + ", valor do pedido: R$ " + getValor()+ ", status: " + entrega;
+    }
+
+    @Override 
+    public boolean equals(Object a) {
+        if (a instanceof Pedido bPedido) {
+            return this.cliente.equals(bPedido.cliente) && bPedido.valor == this.valor;
+        }
+        return false;
+    }
+
+    @Override 
+    public int hashCode() {
+        return Objects.hash(cliente, valor);
     }
 
     public void entregar() {

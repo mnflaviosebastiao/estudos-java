@@ -13,24 +13,35 @@ public class AppPedidos {
         pedidos.add(cafe);
         pedidos.add(acucar);
         pedidos.add(arroz);
-
+        
         cafe.entregar();
         // esperado:Entregue!
         acucar.entregar();
         // esperado:Entregue!
-
+        
         apresentarPedidos(pedidos);
         // esperado: Cliente silvia, valor do pedido: R$ 60.0 , status: não entregue.
         // esperado: Cliente flavio, valor do pedido: R$ 20.0 , status: entregue.
         // esperado: Cliente pedro, valor do pedido: R$ 30.0 , status: entregue.
         // esperado: Cliente kaio, valor do pedido: R$ 50.0 , status: não entregue.
-
+        
         System.out.println("Total somado dos pedidos entregues é: R$ " + totalEntregue(pedidos));
         // esperado: Total somado dos pedidos entregues é: R$ 50.0
         System.out.println("Total de pedidos pendentes é: " + pedidosPendentes(pedidos));
         // esperado: Total de pedidos pendentes é: 2
         System.out.println("O maior pedido e do(a) " + maiorPedido(pedidos));
         // esperado: O pedido com maior valor é da cliente silvia 60
+        
+        Pedido ovos = new Pedido("Cristina", 45);
+        Pedido pao = new Pedido("Cristina", 45);
+
+        ArrayList<Pedido>  novoTest = new ArrayList<>();
+        novoTest.add(pao);
+        System.out.println(novoTest.contains(ovos));
+        // esperado: false
+
+        System.out.println(novoTest.get(0));
+        // esperado: Cliente Cristina, valor do pedido: R$ 45.0, status: não entregue - (esse ultima sabia que voltava o pedido completo mas fiquei na duvida como vinha montado achei que seria como esta no toString)
     }
 
     public static void apresentarPedidos(ArrayList<Pedido> pedidos) {
